@@ -10,6 +10,7 @@ import Foundation
 /// Models a geometric aspect between two bodies.
 public enum Aspect: Equatable, Hashable, Codable {
     
+	/// Major Aspects
 	/// A 0° alignment.
     case conjunction(Double)
 	/// A 60° alignment.
@@ -20,6 +21,21 @@ public enum Aspect: Equatable, Hashable, Codable {
     case trine(Double)
 	/// An 180° alignment.
     case opposition(Double)
+	
+	/// Minor Aspects
+	/// A 30° alignment
+    case semisextile(Double)
+	/// A 45° alignment
+    case semisquare(Double)
+	/// A 145° alignment
+    case sesquisquare(Double)
+	/// A 150° alignment
+    case quincunx(Double)
+	/// A 72° alignment
+    case quintile(Double)
+	/// A 144° alignment
+    case biquintile(Double)
+	///
 	
 	/// Creates an optional `Aspect`. If there is no aspect within the orb, then this initializer will return `nil`.
 	/// - Parameters:
