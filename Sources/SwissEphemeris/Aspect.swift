@@ -34,7 +34,7 @@ public enum Aspect: Equatable, Hashable, Codable {
 	/// A 72° alignment
     case quintile(Double)
 	/// A 144° alignment
-    case biquintile(Double)
+    // case biquintile(Double)	
 	///
 	
 	/// Creates an optional `Aspect`. If there is no aspect within the orb, then this initializer will return `nil`.
@@ -59,12 +59,24 @@ public enum Aspect: Equatable, Hashable, Codable {
 		switch aspectValue {
 		case (0 - orb)...(0 + orb):
 			self = .conjunction(round(aspectValue * 100) / 100)
+		case (30 - orb)...(30 + orb):
+			self = .semisextile(round((aspectValue - 30) * 100) / 100)
+		case (45 - orb)...(45 + orb):
+			self = .semisquare(round((aspectValue - 45) * 100) / 100)
 		case (60 - orb)...(60 + orb):
 			self = .sextile(round((aspectValue - 60) * 100) / 100)
+		case (72 - orb)...(72 + orb):
+			self = .quintile(round((aspectValue - 72) * 100) / 100)
 		case (90 - orb)...(90 + orb):
 			self = .square(round((aspectValue - 90) * 100) / 100)
 		case (120 - orb)...(120 + orb):
 			self = .trine(round((aspectValue - 120) * 100) / 100)
+		// case (144 - orb)...(144 + orb):											
+		// 	self = .biquintile(round((aspectValue - 144) * 100) / 100)
+		case (145 - orb)...(145 + orb):
+			self = .sesquisquare(round((aspectValue - 145) * 100) / 100)
+		case (150 - orb)...(150 + orb):
+			self = .quincunx(round((aspectValue - 150) * 100) / 100)
 		case (180 - orb)...(180 + orb):
 			self = .opposition(round((aspectValue - 180) * 100) / 100)
 		default:
@@ -85,21 +97,35 @@ public enum Aspect: Equatable, Hashable, Codable {
             return "▵"
         case .opposition:
             return "☍"
+		case .semisextile:
+			return "⊻"
+		case .semisquare:
+			return "⦣"
+		case .sesquisquare:
+			return "sS"			// Most of fonts doesn't support this unicode char U+26BC
+		case .quincunx:
+			return "⊼"
+		case .quintile:
+			return "Q"
+		// case .biquintile:
+			// return "bQ"
         }
     }
 	
 	/// The number of degrees from exactness.
 	var remainder: Double {
 		switch self {
-		case .conjunction(let remainder):
-			return remainder
-		case .sextile(let remainder):
-			return remainder
-		case .square(let remainder):
-			return remainder
-		case .trine(let remainder):
-			return remainder
-		case .opposition(let remainder):
+		case .conjunction(let remainder), 
+			.sextile(let remainder), 
+			.square(let remainder),
+			.trine(let remainder), 
+			.opposition(let remainder), 
+			.semisextile(let remainder),
+			.semisquare(let remainder), 
+			.sesquisquare(let remainder), 
+			.quincunx(let remainder),
+			.quintile(let remainder):
+			// .biquintile(let remainder):
 			return remainder
 		}
 	}

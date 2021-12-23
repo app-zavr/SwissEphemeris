@@ -9,7 +9,7 @@ import Foundation
 
 /// Models a direction of a `CelestialBody`.
 /// This is calculated by comparing the coordinate longitude with the longitude 24 hours in the future.
-public enum Station<T: CelestialBody>: Equatable {
+public enum Station<T: CelestialBody>: Equatable, Codable {
 	
 	/// Moves forward.
     case direct

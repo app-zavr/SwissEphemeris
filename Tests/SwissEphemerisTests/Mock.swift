@@ -14,11 +14,9 @@ struct Mock {
 	
     static var date: Date {
         let dob = "1987-10-30T08:42:00-0800"
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return dateFormatter.date(from:dob)!
+        return Date.evaluateDate(from: dob)
     }
-    
+     
     static func makeHouses() -> HouseCusps {
         /// Redwood City California
         let latitude: Double = 37.5081153
@@ -46,5 +44,14 @@ struct Mock {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 		return try XCTUnwrap(dateFormatter.date(from:timestamp))
+	}
+}
+
+
+extension Date {
+	static func evaluateDate(from string: String) -> Date {
+		let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return dateFormatter.date(from:string)!
 	}
 }

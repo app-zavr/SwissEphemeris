@@ -8,7 +8,7 @@
 import Foundation
 
 /// Models the point between two houses
-public struct Cusp {
+public struct Cusp: Codable {
 
 	/// The degree of the coordinate
 	public let value: Double

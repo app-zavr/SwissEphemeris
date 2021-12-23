@@ -81,3 +81,62 @@ public struct HouseCusps {
 		twelfth =  Cusp(value: cuspPointer[12])
     }
 }
+
+
+extension HouseCusps: Codable {
+    enum CodingKeys: String, CodingKey {
+        case date
+        case ascendent
+        case midHeaven
+        case first
+        case second
+        case third
+        case fourth
+        case fifth
+        case sixth
+        case seventh
+        case eighth
+        case ninth
+        case tenth
+        case eleventh
+        case twelfth
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(date, forKey: .date)
+        try container.encode(ascendent, forKey: .ascendent)
+        try container.encode(midHeaven, forKey: .midHeaven)
+        try container.encode(first, forKey: .first)
+        try container.encode(second, forKey: .second)
+        try container.encode(third, forKey: .third)
+        try container.encode(fourth, forKey: .fourth)
+        try container.encode(fifth, forKey: .fifth)
+        try container.encode(sixth, forKey: .sixth)
+        try container.encode(seventh, forKey: .seventh)
+        try container.encode(eighth, forKey: .eighth)
+        try container.encode(ninth, forKey: .ninth)
+        try container.encode(tenth, forKey: .tenth)
+        try container.encode(eleventh, forKey: .eleventh)
+        try container.encode(twelfth, forKey: .twelfth)
+    }
+    
+    public init(from decoder: Decoder) throws {
+       let values = try decoder.container(keyedBy: CodingKeys.self)
+       ascendent = try values.decode(Cusp.self, forKey: .ascendent)
+       midHeaven = try values.decode(Cusp.self, forKey: .midHeaven)
+       first = try values.decode(Cusp.self, forKey: .first)
+       second = try values.decode(Cusp.self, forKey: .second)
+       third = try values.decode(Cusp.self, forKey: .third)
+       fourth = try values.decode(Cusp.self, forKey: .fourth)
+       fifth = try values.decode(Cusp.self, forKey: .fifth)
+       sixth = try values.decode(Cusp.self, forKey: .sixth)
+       seventh = try values.decode(Cusp.self, forKey: .seventh)
+       eighth = try values.decode(Cusp.self, forKey: .eighth)
+       ninth = try values.decode(Cusp.self, forKey: .ninth)
+       tenth = try values.decode(Cusp.self, forKey: .tenth)
+       eleventh = try values.decode(Cusp.self, forKey: .eleventh)
+       twelfth = try values.decode(Cusp.self, forKey: .twelfth)
+       date = try values.decode(Date.self, forKey: .date)
+    }
+}
