@@ -18,6 +18,8 @@ public final class JPLFileManager {
 	/// Sets the ephemeris path.
 	/// - Parameter path: The  path of the ephemeris files. The default value is `resourcePath`.
 	public static func setEphemerisPath(path: String? = resourcePath) {
-		swe_set_ephe_path(strdup(path))
+		if let path = path {
+			swe_set_ephe_path(strdup(path))
+		}
 	}
 }
